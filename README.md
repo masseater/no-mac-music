@@ -14,7 +14,16 @@ Apple TV, VLC, Swinsian, Vox など）を操作できるようにするスタン
 
 ## インストール
 
-### ワンライナー（おすすめ）
+### Homebrew Cask（おすすめ）
+
+```sh
+brew install --cask masseater/no-mac-music/no-mac-music
+```
+
+[GitHub Release](https://github.com/masseater/no-mac-music/releases) のビルド済み
+`.app` を `/Applications` に配置する。更新は `brew upgrade --cask no-mac-music`。
+
+### curl ワンライナー（ソースビルド）
 
 Xcode Command Line Tools (`xcode-select --install`) が入っている環境で:
 
