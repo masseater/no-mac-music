@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Show Swift version
+        run: swift --version
+
+      - name: Build (debug)
+        run: swift build
+
+      - name: Build .app bundle (release)
+        run: bash scripts/build-app.sh
+
+      - name: Verify bundle
+        run: |
+          test -x dist/NoMacMusic.app/Contents/MacOS/NoMacMusic
+          /usr/libexec/PlistBuddy -c "Print CFBundleIdentifier" dist/NoMacMusic.app/Contents/Info.plist

@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-14
+    env:
+      TAG: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build .app bundle
+        run: bash scripts/build-app.sh
+
+      - name: Package .app as zip
+        run: |
+          cd dist
+          /usr/bin/ditto -c -k --sequesterRsrc --keepParent NoMacMusic.app NoMacMusic.app.zip
+          shasum -a 256 NoMacMusic.app.zip | tee NoMacMusic.app.zip.sha256
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" \
+              dist/NoMacMusic.app.zip \
+              dist/NoMacMusic.app.zip.sha256 \
+              --clobber
+          else
+            gh release create "$TAG" \
+              --title "$TAG" \
+              --generate-notes \
+              dist/NoMacMusic.app.zip \
+              dist/NoMacMusic.app.zip.sha256
+          fi
