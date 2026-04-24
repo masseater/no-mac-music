@@ -43,6 +43,16 @@ open dist/NoMacMusic.app
 ```
 
 開発中にソースだけ素早く通したいときは `swift build`。
+Homebrew 版と区別してローカル開発版を起動したいときは、別名・別 bundle id の dev ビルドを使う。
+
+```sh
+./scripts/build-dev-app.sh
+open "dist/NoMacMusic Dev.app"
+```
+
+dev ビルドは `NoMacMusic Dev` / `com.masseater.NoMacMusic.dev` として扱われるため、
+Homebrew で入れた `/Applications/NoMacMusic.app` とは Accessibility / Input Monitoring の
+権限登録も分かれる。
 
 ## 権限付与
 

@@ -28,13 +28,13 @@ final class StatusItemController: NSObject {
 
     private func configureButton() {
         if let button = statusItem.button {
-            if let image = NSImage(systemSymbolName: "nosign", accessibilityDescription: "NoMacMusic") {
+            if let image = NSImage(systemSymbolName: "nosign", accessibilityDescription: AppMetadata.displayName) {
                 image.isTemplate = true
                 button.image = image
             } else {
                 button.title = "NMM"
             }
-            button.toolTip = "NoMacMusic"
+            button.toolTip = AppMetadata.displayName
         }
     }
 
@@ -105,7 +105,7 @@ final class StatusItemController: NSObject {
 
         menu.addItem(.separator())
 
-        let quitItem = NSMenuItem(title: "Quit NoMacMusic", action: #selector(quit), keyEquivalent: "q")
+        let quitItem = NSMenuItem(title: "Quit \(AppMetadata.displayName)", action: #selector(quit), keyEquivalent: "q")
         quitItem.target = self
         menu.addItem(quitItem)
 

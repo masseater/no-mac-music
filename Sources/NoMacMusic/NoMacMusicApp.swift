@@ -6,7 +6,7 @@ struct NoMacMusicApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
 
     var body: some Scene {
-        WindowGroup("NoMacMusic") {
+        WindowGroup(AppMetadata.displayName) {
             MainView()
                 .environmentObject(appDelegate.core)
         }
@@ -52,7 +52,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func showMainWindow() {
         for window in NSApp.windows
-        where window.canBecomeMain && window.title == "NoMacMusic" {
+        where window.canBecomeMain && window.title == AppMetadata.displayName {
             window.makeKeyAndOrderFront(nil)
             return
         }

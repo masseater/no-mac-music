@@ -23,7 +23,7 @@ private struct GeneralSettingsTab: View {
         Form {
             Toggle("Intercept media keys", isOn: $core.isEnabled)
             Toggle("Kill Music.app automatically when it launches", isOn: $core.killMusicOnLaunch)
-            Toggle("Launch NoMacMusic at login", isOn: $core.loginItemEnabled)
+            Toggle("Launch \(AppMetadata.displayName) at login", isOn: $core.loginItemEnabled)
         }
         .formStyle(.grouped)
         .padding()

@@ -50,7 +50,7 @@ struct MainView: View {
         .padding(14)
         .frame(minWidth: 300, idealWidth: 320, minHeight: 360)
         .alert(
-            "NoMacMusic",
+            AppMetadata.displayName,
             isPresented: Binding(
                 get: { core.lastError != nil },
                 set: { if !$0 { core.lastError = nil } }
@@ -66,7 +66,7 @@ struct MainView: View {
                 .font(.system(size: 24, weight: .medium))
                 .foregroundStyle(.tint)
             VStack(alignment: .leading, spacing: 1) {
-                Text("NoMacMusic").font(.headline)
+                Text(AppMetadata.displayName).font(.headline)
                 Text("Route media keys to your player.")
                     .font(.caption)
                     .foregroundStyle(.secondary)

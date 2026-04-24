@@ -36,7 +36,7 @@ struct AppleScriptController: TargetAppController {
         var errorInfo: NSDictionary?
         script.executeAndReturnError(&errorInfo)
         if let errorInfo {
-            FileHandle.standardError.write(Data("[NoMacMusic] AppleScript error: \(errorInfo)\n".utf8))
+            FileHandle.standardError.write(Data("[\(AppMetadata.displayName)] AppleScript error: \(errorInfo)\n".utf8))
         }
     }
 }

@@ -228,7 +228,7 @@ final class AppCore: ObservableObject {
             let data = try JSONEncoder().encode(customConfigs)
             defaults.set(data, forKey: Key.customConfigs)
         } catch {
-            FileHandle.standardError.write(Data("[NoMacMusic] failed to persist custom configs: \(error)\n".utf8))
+            FileHandle.standardError.write(Data("[\(AppMetadata.displayName)] failed to persist custom configs: \(error)\n".utf8))
         }
     }
 
