@@ -25,8 +25,11 @@ final class MediaKeyTap {
         let mask: CGEventMask = 1 << systemDefinedEventType.rawValue
 
         let selfPtr = Unmanaged.passUnretained(self).toOpaque()
+        // Use the HID-level tap (.cghidEventTap) so we intercept the media key
+        // before rcd / MediaRemote can dispatch it to Music.app. Requires Input
+        // Monitoring permission in addition to Accessibility.
         guard let tap = CGEvent.tapCreate(
-            tap: .cgSessionEventTap,
+            tap: .cghidEventTap,
             place: .headInsertEventTap,
             options: .defaultTap,
             eventsOfInterest: mask,
