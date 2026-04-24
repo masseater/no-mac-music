@@ -1,8 +1,8 @@
+import AppKit
 import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject private var core: AppCore
-    @Environment(\.openSettings) private var openSettings
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -39,7 +39,7 @@ struct MainView: View {
 
             HStack {
                 Button {
-                    openSettings()
+                    NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
                 } label: {
                     Label("Preferences…", systemImage: "gearshape")
                 }
