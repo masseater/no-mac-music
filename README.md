@@ -17,7 +17,7 @@ Apple TV, VLC, Swinsian, Vox など）を操作できるようにするスタン
 ### Homebrew Cask（おすすめ）
 
 ```sh
-brew install --cask masseater/no-mac-music/no-mac-music
+brew install --cask masseater/tap/no-mac-music
 ```
 
 [GitHub Release](https://github.com/masseater/no-mac-music/releases) のビルド済み
